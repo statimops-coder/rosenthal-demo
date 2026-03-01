@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosenthal Chiropractic Clinic | Feel Good! Do More!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #fff;
+      --cream: #f9f7f4;
+      --teal: #2a7a6e;
+      --gold: #d4a843;
+      --text: #1f2d2a;
+      --shadow: 0 12px 32px rgba(20, 38, 36, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Source Sans Pro", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Lora", serif;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .site-nav.scrolled {
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      padding: 0.5rem 0;
+    }
+
+    .logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      transition: color 0.3s ease;
+    }
+
+    .site-nav.scrolled .logo {
+      color: var(--teal);
+    }
+
+    .menu-btn {
+      background: none;
+      border: 0;
+      color: var(--white);
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .site-nav.scrolled .menu-btn {
+      color: var(--teal);
+    }
+
+    .nav-links {
+      list-style: none;
+      position: absolute;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      border-bottom: 1px solid rgba(42, 122, 110, 0.12);
+    }
+
+    .nav-links.open {
+      max-height: 260px;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.95rem 1.2rem;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(130deg, rgba(18, 34, 31, 0.68), rgba(42, 122, 110, 0.48)),
+        url("images/dr-marcy.jpg") center/cover no-repeat;
+      color: var(--white);
+      padding-top: 76px;
+    }
+
+    .hero-content {
+      width: min(760px, 100%);
+      padding: 2rem 0 4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 7vw, 4.2rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2.8vw, 1.4rem);
+      max-width: 62ch;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #2a2110;
+      font-weight: 700;
+      padding: 0.9rem 1.5rem;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 22px rgba(212, 168, 67, 0.25);
+    }
+
+    .cta-btn:hover,
+    .cta-btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 13px 24px rgba(212, 168, 67, 0.35);
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .welcome-strip {
+      background: var(--cream);
+      padding: 3rem 0;
+    }
+
+    .welcome-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .welcome-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .welcome-icon {
+      font-size: 1.5rem;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-card h3 {
+      margin-bottom: 0.4rem;
+      color: var(--teal);
+      font-size: 1.2rem;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 1.6rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-copy h2 {
+      color: var(--teal);
+      margin-bottom: 1rem;
+      font-size: clamp(1.8rem, 4.2vw, 2.4rem);
+    }
+
+    .about-copy p {
+      margin-bottom: 1rem;
+    }
+
+    .credentials {
+      padding-left: 1.2rem;
+    }
+
+    .credentials li {
+      margin-bottom: 0.45rem;
+    }
+
+    .services {
+      background: var(--cream);
+    }
+
+    .services h2 {
+      text-align: center;
+      color: var(--teal);
+      margin-bottom: 2rem;
+      font-size: clamp(1.8rem, 4.2vw, 2.4rem);
+    }
+
+    .service-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .service-content {
+      padding: 1.2rem;
+    }
+
+    .service-content h3 {
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+      font-size: 1.25rem;
+    }
+
+    .conditions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.8rem;
+      justify-content: center;
+    }
+
+    .conditions span {
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(42, 122, 110, 0.11);
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      color: var(--teal);
+      margin-bottom: 1.8rem;
+      font-size: clamp(1.8rem, 4.2vw, 2.4rem);
+    }
+
+    .marquee {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      animation: scrollLeft 42s linear infinite;
+    }
+
+    .quote-card {
+      width: min(360px, 86vw);
+      background: var(--cream);
+      padding: 1.1rem 1rem;
+      border-left: 4px solid var(--teal);
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(24, 39, 37, 0.1);
+    }
+
+    .quote-card p {
+      font-family: "Lora", serif;
+      font-style: italic;
+      margin-bottom: 0.7rem;
+    }
+
+    .quote-card span {
+      font-size: 0.92rem;
+      color: #35514b;
+      font-weight: 600;
+    }
+
+    @keyframes scrollLeft {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .contact {
+      background: var(--teal);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .contact .phone {
+      display: inline-block;
+      font-size: clamp(1.6rem, 5.5vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      color: var(--gold);
+    }
+
+    .contact p {
+      margin-bottom: 0.5rem;
+      font-size: 1.07rem;
+    }
+
+    .map-wrap {
+      margin-top: 1.3rem;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+    }
+
+    footer {
+      background: #174841;
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      padding: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    footer small {
+      display: block;
+      margin-top: 0.4rem;
+      opacity: 0.92;
+    }
+
+    @media (min-width: 760px) {
+      .menu-btn {
+        display: none;
+      }
+
+      .nav-links {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        flex-direction: row;
+        background: transparent;
+        border: 0;
+        gap: 0.85rem;
+      }
+
+      .nav-links a {
+        color: var(--white);
+        padding: 0.45rem 0.7rem;
+      }
+
+      .site-nav.scrolled .nav-links a {
+        color: var(--teal);
+      }
+
+      .welcome-grid,
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-grid {
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .welcome-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .service-card img {
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">Rosenthal Chiropractic</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content reveal">
+      <h1>Feel Good. Do More.</h1>
+      <p>Gentle, individualized chiropractic care in Largo, Florida — no cracking, no packages, no pressure.</p>
+      <a class="cta-btn" href="tel:7275390075">Schedule Your Visit</a>
+    </div>
+  </header>
+
+  <section class="welcome-strip">
+    <div class="container welcome-grid">
+      <article class="welcome-card reveal">
+        <div class="welcome-icon" aria-hidden="true">✦</div>
+        <h3>No Manual Cracking</h3>
+        <p>Computerized, gentle adjustments only</p>
+      </article>
+      <article class="welcome-card reveal">
+        <div class="welcome-icon" aria-hidden="true">⌛</div>
+        <h3>Boutique Practice Since 1994</h3>
+        <p>Solo practice, personalized care every visit</p>
+      </article>
+      <article class="welcome-card reveal">
+        <div class="welcome-icon" aria-hidden="true">✶</div>
+        <h3>Cold Laser Pioneer</h3>
+        <p>First in Tampa Bay to offer LLLT technology</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <img class="about-photo" src="images/marcy-robert.jpg" alt="Dr. Marcy Smurthwaite with her husband Robert">
+      </div>
+      <div class="about-copy reveal">
+        <h2>Meet Dr. Marcy</h2>
+        <p>Dr. Marcy Smurthwaite has been in private practice since 1994, serving Pinellas County with gentle, computerized chiropractic care. A native Floridian and certified laser therapy specialist, she was the first doctor in Tampa Bay to use Cold Laser Technology. Her philosophy is simple: medicine alters body function. Chiropractic restores it.</p>
+        <p>When she's not in the clinic, you'll find her cooking organic food with her husband Robert, fly fishing in North Carolina, or on a missionary trip treating her Mayan friends in Mexico.</p>
+        <ul class="credentials">
+          <li>Doctor of Chiropractic, Life University, Atlanta, GA</li>
+          <li>CIA Certified — Impulse iQ Adjusting Instrument</li>
+          <li>Certified, American Society of Laser Therapy</li>
+          <li>Past President, Pinellas County Chiropractic Society (2013-14)</li>
+          <li>100+ hours Spinal Rehabilitation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="reveal">Services</h2>
+      <div class="service-grid">
+        <article class="service-card reveal">
+          <img src="images/exam.jpg" alt="Impulse iQ chiropractic exam in progress">
+          <div class="service-content">
+            <h3>IMPULSE iQ CHIROPRACTIC</h3>
+            <p>Computerized, gentle adjustments — no popping, no twisting, no discomfort. The Impulse iQ delivers precise force tailored to your spine. And you keep your clothes on.</p>
+          </div>
+        </article>
+        <article class="service-card reveal">
+          <img src="images/cold-laser-room.jpg" alt="Cold laser therapy treatment room">
+          <div class="service-content">
+            <h3>COLD LASER THERAPY</h3>
+            <p>FDA-cleared Low-Level Laser Therapy. Dr. Marcy was the first in Tampa Bay to offer this non-invasive treatment. No heat, no discomfort — just deep tissue healing.</p>
+          </div>
+        </article>
+      </div>
+      <div class="conditions reveal" aria-label="Conditions treated">
+        <span>Arthritis</span>
+        <span>Back Pain</span>
+        <span>Bursitis</span>
+        <span>Carpal Tunnel</span>
+        <span>Degenerative Disc Disease</span>
+        <span>Fibromyalgia</span>
+        <span>Herniated Discs</span>
+        <span>Knee Pain</span>
+        <span>Migraines</span>
+        <span>Plantar Fasciitis</span>
+        <span>Sciatica</span>
+        <span>Tendonitis</span>
+        <span>TMJ</span>
+        <span>Whiplash</span>
+        <span>Sports Injuries</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2 class="reveal">Testimonials</h2>
+      <div class="marquee reveal">
+        <div class="marquee-track">
+          <article class="quote-card">
+            <p>"Dr. Marcy has helped me so much! I thought I would need surgery, but my pain is gone now. I was able to dance at my grandson's wedding!"</p>
+            <span>D.S., patient since 2025</span>
+          </article>
+          <article class="quote-card">
+            <p>"I feel so much better! I'm leaving here a different person than the one who came in."</p>
+            <span>M.G., patient since 1990</span>
+          </article>
+          <article class="quote-card">
+            <p>"After years and years of agony, the pain is almost gone after just a few weeks. Best money I have ever spent!"</p>
+            <span>W.M., patient since 2022</span>
+          </article>
+          <article class="quote-card">
+            <p>"I've been to at least 12 other chiropractors, and I like your way the best!"</p>
+            <span>W.J., patient since 2021</span>
+          </article>
+          <article class="quote-card">
+            <p>"Dr. Marcy turned me from a real skeptic into a believer. She did more for my back in one visit than any other doctor."</p>
+            <span>D.R.B., patient since 2020</span>
+          </article>
+          <article class="quote-card">
+            <p>"I feel I can even breathe better after my adjustment!"</p>
+            <span>C.K., patient since 2018</span>
+          </article>
+          <article class="quote-card">
+            <p>"I became a believer when I stood up after my first adjustment and said AHHHH!"</p>
+            <span>R.J., patient since 2012</span>
+          </article>
+          <article class="quote-card">
+            <p>"Since my first appointment last week, I feel AMAZING! Dr. Marcy is a magician!"</p>
+            <span>S.R., patient since 2020</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"Dr. Marcy has helped me so much! I thought I would need surgery, but my pain is gone now. I was able to dance at my grandson's wedding!"</p>
+            <span>D.S., patient since 2025</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"I feel so much better! I'm leaving here a different person than the one who came in."</p>
+            <span>M.G., patient since 1990</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"After years and years of agony, the pain is almost gone after just a few weeks. Best money I have ever spent!"</p>
+            <span>W.M., patient since 2022</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"I've been to at least 12 other chiropractors, and I like your way the best!"</p>
+            <span>W.J., patient since 2021</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"Dr. Marcy turned me from a real skeptic into a believer. She did more for my back in one visit than any other doctor."</p>
+            <span>D.R.B., patient since 2020</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"I feel I can even breathe better after my adjustment!"</p>
+            <span>C.K., patient since 2018</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"I became a believer when I stood up after my first adjustment and said AHHHH!"</p>
+            <span>R.J., patient since 2012</span>
+          </article>
+          <article class="quote-card" aria-hidden="true">
+            <p>"Since my first appointment last week, I feel AMAZING! Dr. Marcy is a magician!"</p>
+            <span>S.R., patient since 2020</span>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container reveal">
+      <h2>Ready to Feel Good?</h2>
+      <a class="phone" href="tel:7275390075">(727) 539-0075</a>
+      <p>12855 S. Belcher Road, Suite 1, Largo, FL 33773</p>
+      <p>Mon/Wed/Fri 9am-5pm | Tue/Thu 9am-12pm</p>
+      <div class="map-wrap">
+        <iframe
+          title="Rosenthal Chiropractic Clinic Map"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=12855+S.+Belcher+Road,+Suite+1,+Largo,+FL+33773&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Rosenthal Chiropractic Clinic &copy; 2026 | Largo, FL
+      <small>Chiropractor Largo | Chiropractor Clearwater | Chiropractor St. Petersburg | Chiropractor Seminole</small>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById("siteNav");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const navAnchors = navLinks.querySelectorAll("a");
+
+    function handleNavStyle() {
+      if (window.scrollY > 20) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    }
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navAnchors.forEach((anchor) => {
+      anchor.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    window.addEventListener("scroll", handleNavStyle);
+    handleNavStyle();
+
+    const revealItems = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
