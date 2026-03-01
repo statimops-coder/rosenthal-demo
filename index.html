@@ -1,41 +1,62 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rosenthal Chiropractic Clinic | Feel Good. Do More.</title>
-  <meta name="description" content="Rosenthal Chiropractic Clinic in Largo, Florida. Dr. Marcy L. Smurthwaite offers gentle Impulse iQ Chiropractic and Cold Laser Therapy." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Rosenthal Chiropractic Clinic in Largo, Florida. Dr. Marcy L. Smurthwaite offers no-cracking, no-twisting care with Impulse iQ and Cold Laser Therapy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #f9f7f4;
-      --teal: #2a7a6e;
-      --gold: #d4a843;
-      --ink: #1f2d2a;
-      --muted: #53645f;
-      --line: #d8d2c8;
-      --tint: #f2eee8;
-      --shadow: 0 14px 34px rgba(31, 45, 42, 0.15);
-      --radius-soft: 3px;
-      --max: 1180px;
+      --clr-bg: #f9f7f4;
+      --clr-primary: #2a7a6e;
+      --clr-primary-dark: #1f6157;
+      --clr-accent: #d4a843;
+      --clr-text: #1f2d2a;
+      --clr-text-muted: #425551;
+      --clr-border: rgba(31, 45, 42, 0.14);
+      --clr-overlay: rgba(18, 30, 27, 0.55);
+
+      --space-8: 8px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+
+      --radius-2: 2px;
+      --radius-4: 4px;
+
+      --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 10px rgba(0, 0, 0, 0.04);
+      --shadow-2: 0 10px 28px rgba(0, 0, 0, 0.14);
+      --shadow-3: 0 20px 44px rgba(0, 0, 0, 0.2);
+
+      --easing: cubic-bezier(0.16, 1, 0.3, 1);
+      --container-max: 1200px;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
-    }
-
-    html,
-    body {
       margin: 0;
       padding: 0;
-      background: var(--cream);
-      color: var(--ink);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       font-family: "DM Sans", sans-serif;
       font-size: 15px;
-      line-height: 1.55;
-      scroll-behavior: smooth;
+      line-height: 1.6;
+      color: var(--clr-text);
+      background: var(--clr-bg);
+      overflow-x: hidden;
     }
 
     img {
@@ -48,386 +69,446 @@
       text-decoration: none;
     }
 
+    h1, h2, h3, h4 {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      text-wrap: balance;
+      font-weight: 700;
+    }
+
+    p {
+      max-width: 65ch;
+      text-wrap: pretty;
+    }
+
     .container {
-      width: min(var(--max), calc(100% - 2.5rem));
-      margin: 0 auto;
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--space-16);
     }
 
-    .reveal {
+    .section {
+      padding-block: 60px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: var(--space-8) var(--space-16);
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--clr-border);
+      background: rgba(249, 247, 244, 0.6);
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -70%;
+      width: 42%;
+      height: 220%;
+      background: rgba(255, 255, 255, 0.35);
+      transform: skewX(-20deg);
+      transition: left 600ms ease;
+      pointer-events: none;
+    }
+
+    .btn:hover::after,
+    .btn:focus-visible::after {
+      left: 135%;
+    }
+
+    .btn:focus-visible,
+    .nav-toggle:focus-visible,
+    .nav-links a:focus-visible {
+      outline: 2px solid var(--clr-accent);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--clr-primary);
+      color: #fff;
+      box-shadow: var(--shadow-1);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      transform: translateY(-2px);
+      background: var(--clr-primary-dark);
+      box-shadow: var(--shadow-2);
+    }
+
+    .btn-gold {
+      background: var(--clr-accent);
+      color: #1b1b1b;
+      box-shadow: var(--shadow-1);
+    }
+
+    .btn-gold:hover,
+    .btn-gold:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
+      background: #c89934;
+    }
+
+    [data-animate] {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(32px);
+      transition: opacity 600ms ease, transform 600ms var(--easing);
+      transition-delay: var(--delay, 0ms);
     }
 
-    .reveal.visible {
+    [data-animate].in-view {
       opacity: 1;
       transform: translateY(0);
     }
 
     .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 30;
+      transition: background 300ms cubic-bezier(0.2, 0, 0, 1), border-color 300ms cubic-bezier(0.2, 0, 0, 1), backdrop-filter 300ms cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .site-nav.scrolled {
+      background: rgba(249, 247, 244, 0.84);
       border-bottom: 1px solid rgba(31, 45, 42, 0.12);
-      background: rgba(249, 247, 244, 0.96);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(20px) saturate(170%);
+      -webkit-backdrop-filter: blur(20px) saturate(170%);
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       min-height: 72px;
-      gap: 1rem;
+      gap: var(--space-16);
     }
 
     .brand {
       display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      min-width: 0;
+      flex-direction: column;
+      margin-right: auto;
+      line-height: 1.1;
     }
 
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--teal);
-      display: grid;
-      place-items: center;
-      color: var(--teal);
-      flex: 0 0 auto;
-    }
-
-    .brand-mark i {
-      width: 18px;
-      height: 18px;
-      stroke-width: 2.25;
-    }
-
-    .brand h1 {
-      margin: 0;
+    .brand strong {
+      font-size: 20px;
       font-family: "Cormorant Garamond", serif;
-      font-size: 1.35rem;
-      line-height: 1;
-      letter-spacing: 0.01em;
+      letter-spacing: -0.02em;
     }
 
-    .brand p {
-      margin: 0;
-      font-size: 0.72rem;
-      color: var(--muted);
+    .brand span {
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      white-space: nowrap;
+      letter-spacing: 0.08em;
+      color: var(--clr-text-muted);
     }
 
-    .menu-toggle {
-      border: 1px solid var(--ink);
+    .nav-toggle {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--clr-border);
       background: transparent;
-      color: var(--ink);
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      padding: 0;
+      color: var(--clr-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
 
-    .menu-toggle i {
-      width: 20px;
-      height: 20px;
+    .nav-menu {
+      position: fixed;
+      inset: 72px 0 auto 0;
+      background: rgba(249, 247, 244, 0.98);
+      border-bottom: 1px solid var(--clr-border);
+      transform: translateY(-120%);
+      transition: transform 320ms var(--easing);
+      z-index: 25;
+    }
+
+    .nav-menu.open {
+      transform: translateY(0);
     }
 
     .nav-links {
-      display: none;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 72px;
-      background: var(--cream);
-      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
-      padding: 0.75rem 1.25rem 1rem;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .nav-links.open {
-      display: flex;
+      list-style: none;
+      display: grid;
+      gap: 0;
     }
 
     .nav-links a {
-      font-size: 0.82rem;
-      letter-spacing: 0.09em;
+      display: block;
+      padding: 16px;
+      border-top: 1px solid var(--clr-border);
+      position: relative;
+      font-size: 14px;
       text-transform: uppercase;
-      color: var(--ink);
-      padding-bottom: 0.25rem;
-      border-bottom: 1px solid transparent;
-      width: fit-content;
+      letter-spacing: 0.06em;
     }
 
-    .nav-links a:hover {
-      border-color: var(--teal);
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      bottom: 10px;
+      width: 0;
+      height: 2px;
+      background: var(--clr-primary);
+      transition: width 280ms ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 28px;
     }
 
     .hero {
-      min-height: calc(100vh - 72px);
+      margin-top: 0;
+      background: linear-gradient(120deg, rgba(42, 122, 110, 0.05), rgba(212, 168, 67, 0.05));
+    }
+
+    .hero-grid {
       display: grid;
       grid-template-columns: 1fr;
-      border-bottom: 1px solid rgba(31, 45, 42, 0.14);
+      min-height: 100svh;
     }
 
     .hero-copy {
-      padding: 2.25rem 1.25rem 2rem;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+      align-items: center;
+      padding: 112px var(--space-16) 64px;
     }
 
-    .hero-copy::before {
-      content: "";
-      position: absolute;
-      right: -6rem;
-      top: -4rem;
-      width: 18rem;
-      height: 18rem;
-      border: 1px solid rgba(42, 122, 110, 0.15);
-      pointer-events: none;
+    .hero-copy-inner {
+      max-width: 560px;
+      margin-inline: auto;
+      width: 100%;
     }
 
-    .hero-banner {
-      max-width: 240px;
-      margin-bottom: 1.2rem;
-      border: 1px solid rgba(31, 45, 42, 0.18);
-      box-shadow: var(--shadow);
+    .hero h1 {
+      font-size: clamp(48px, 12vw, 88px);
+      margin-top: var(--space-16);
     }
 
-    .kicker {
-      margin: 0 0 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: var(--teal);
-      font-size: 0.75rem;
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
+    .hero-subtext {
+      margin-top: var(--space-24);
+      font-size: 15px;
+      color: var(--clr-text-muted);
     }
 
-    .hero h2 {
-      margin: 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      line-height: 0.9;
-      letter-spacing: 0.01em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-sub {
-      margin: 1rem 0 1.5rem;
-      max-width: 34ch;
-      color: var(--muted);
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-row {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
+      gap: var(--space-16);
+      margin-top: var(--space-32);
     }
 
-    .btn {
-      border: 1px solid #b28730;
-      background: var(--gold);
-      color: #1f2118;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-      padding: 0.85rem 1.2rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      border-radius: var(--radius-soft);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 18px rgba(212, 168, 67, 0.32);
+    .hero-meta {
+      margin-top: var(--space-24);
+      font-size: 13px;
+      color: var(--clr-text-muted);
+      letter-spacing: 0.02em;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 18px rgba(212, 168, 67, 0.36);
-    }
-
-    .quick-phone {
-      font-size: 0.88rem;
-      color: var(--ink);
-      border-bottom: 1px solid rgba(31, 45, 42, 0.35);
-    }
-
-    .hero-image {
-      min-height: 44vh;
+    .hero-visual {
+      min-height: 420px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-image img {
+    .hero-visual img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.38));
+    }
+
+    .hero-ribbon {
+      position: absolute;
+      left: var(--space-16);
+      bottom: var(--space-16);
+      width: min(330px, calc(100% - 32px));
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: var(--shadow-2);
     }
 
     .trust-bar {
-      border-bottom: 1px solid rgba(31, 45, 42, 0.14);
-      background: #f5f2ec;
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      background: rgba(255, 255, 255, 0.55);
     }
 
     .trust-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
+      gap: var(--space-24);
+      padding-block: var(--space-24);
     }
 
     .trust-item {
       display: flex;
-      gap: 0.8rem;
       align-items: center;
-      padding: 1.1rem 0;
-      border-bottom: 1px solid rgba(31, 45, 42, 0.1);
-    }
-
-    .trust-item:last-child {
-      border-bottom: 0;
+      gap: var(--space-16);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--clr-text);
     }
 
     .trust-item i {
       width: 20px;
       height: 20px;
-      color: var(--teal);
+      color: var(--clr-primary);
       flex: 0 0 auto;
-    }
-
-    .about {
-      padding: 3.5rem 0;
-      overflow: hidden;
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.75rem;
+      gap: var(--space-40);
       align-items: start;
-      position: relative;
     }
 
     .about-photo-wrap {
       position: relative;
-      width: min(92%, 560px);
-      box-shadow: var(--shadow);
-      z-index: 2;
+      padding-left: var(--space-24);
+    }
+
+    .about-photo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 16px auto auto 0;
+      width: 70%;
+      height: calc(100% - 16px);
+      border: 1px solid rgba(42, 122, 110, 0.35);
+      pointer-events: none;
     }
 
     .about-photo-wrap img {
+      position: relative;
+      z-index: 1;
+      min-height: 400px;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      box-shadow: var(--shadow-2);
+    }
+
+    .about-text h2,
+    .services h2,
+    .conditions h2,
+    .testimonials h2,
+    .contact h2,
+    .cta h2 {
+      font-size: clamp(36px, 7vw, 56px);
+      margin-bottom: var(--space-24);
+    }
+
+    .about-text p + p {
+      margin-top: var(--space-16);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      margin-top: var(--space-24);
+    }
+
+    .tag {
+      border: 1px solid var(--clr-border);
+      padding: var(--space-8) 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .about-side-grid {
+      display: grid;
+      gap: var(--space-16);
+      margin-top: var(--space-32);
+      grid-template-columns: 1fr;
+    }
+
+    .about-mini {
+      position: relative;
+      min-height: 180px;
+      overflow: hidden;
+      box-shadow: var(--shadow-1);
+    }
+
+    .about-mini img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
-    .about-accent {
+    .about-mini span {
       position: absolute;
-      right: -26px;
-      bottom: -26px;
-      width: 130px;
-      border: 1px solid rgba(31, 45, 42, 0.18);
-      box-shadow: 0 10px 26px rgba(31, 45, 42, 0.2);
-      z-index: 3;
-    }
-
-    .about-family {
-      margin-top: 0.9rem;
-      width: min(96%, 580px);
-      border: 1px solid rgba(31, 45, 42, 0.14);
-      box-shadow: 0 10px 24px rgba(31, 45, 42, 0.14);
-    }
-
-    .about-text {
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-kicker {
-      margin: 0 0 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--teal);
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .about h3,
-    .services h3,
-    .conditions h3,
-    .testimonials h3,
-    .contact h3 {
-      margin: 0 0 0.8rem;
-      font-family: "Cormorant Garamond", serif;
-      line-height: 1.06;
-      font-size: clamp(2rem, 4.8vw, 3rem);
-      letter-spacing: 0.01em;
-    }
-
-    .about-text p {
-      margin: 0 0 0.9rem;
-      max-width: 50ch;
-      color: #2f403c;
-    }
-
-    .credentials {
-      margin-top: 1.2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.42rem;
-    }
-
-    .credentials span {
-      border: 1px solid rgba(31, 45, 42, 0.32);
-      padding: 0.24rem 0.46rem;
+      inset: auto var(--space-16) var(--space-16);
+      color: #fff;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: 0.64rem;
-      background: rgba(249, 247, 244, 0.75);
-    }
-
-    .services {
-      padding: 1.2rem 0 3.2rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.1rem;
+      gap: var(--space-24);
+      margin-top: var(--space-32);
     }
 
     .service-card {
-      min-height: 290px;
       position: relative;
+      min-height: 360px;
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
       overflow: hidden;
-      color: #f8f7f5;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(31, 45, 42, 0.2);
-      border-radius: var(--radius-soft);
-      transform: translateY(0);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: var(--shadow-2);
+      transition: transform 200ms ease, box-shadow 200ms ease;
     }
 
     .service-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 18px 36px rgba(31, 45, 42, 0.25);
+      box-shadow: var(--shadow-3);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--clr-overlay);
+      z-index: 1;
     }
 
     .service-card img {
@@ -438,567 +519,687 @@
       object-fit: cover;
     }
 
-    .service-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(10, 14, 13, 0.18), rgba(10, 14, 13, 0.72));
-      display: flex;
-      align-items: flex-end;
-      padding: 1.2rem;
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-24);
+      display: grid;
+      gap: var(--space-16);
     }
 
-    .service-overlay h4 {
-      margin: 0 0 0.25rem;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.95rem;
-      line-height: 0.95;
+    .service-card h3 {
+      font-size: clamp(30px, 5vw, 44px);
     }
 
-    .service-overlay p {
-      margin: 0 0 0.6rem;
-      max-width: 35ch;
-      color: rgba(248, 247, 245, 0.9);
-      font-size: 0.92rem;
+    .service-card p {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 14px;
     }
 
-    .service-overlay a {
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.72rem;
-      border-bottom: 1px solid rgba(248, 247, 245, 0.8);
-    }
-
-    .conditions {
-      padding: 0 0 3.2rem;
-    }
-
-    .tag-list {
+    .conditions-list {
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 0.45rem;
-      margin-top: 1rem;
+      gap: var(--space-8);
+      margin-top: var(--space-24);
     }
 
-    .tag {
-      border: 1px solid rgba(31, 45, 42, 0.32);
-      padding: 0.28rem 0.52rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.03em;
-      color: #2a3b36;
+    .conditions-list li {
+      list-style: none;
+      border: 1px solid rgba(31, 45, 42, 0.25);
+      padding: 8px 12px;
+      font-size: 13px;
+      letter-spacing: 0.02em;
       background: transparent;
     }
 
     .testimonials {
-      padding: 3rem 0;
-      background: var(--tint);
-      border-top: 1px solid rgba(31, 45, 42, 0.12);
-      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
       overflow: hidden;
-    }
-
-    .testi-intro {
-      margin-bottom: 1.1rem;
     }
 
     .marquee {
-      width: 100%;
+      margin-top: var(--space-24);
+      position: relative;
       overflow: hidden;
-      border-top: 1px solid rgba(31, 45, 42, 0.12);
-      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
-      padding: 0.85rem 0;
-      background: rgba(249, 247, 244, 0.4);
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      background: rgba(255, 255, 255, 0.45);
     }
 
     .marquee-track {
       display: flex;
       width: max-content;
-      gap: 0.85rem;
-      animation: scrollX 45s linear infinite;
+      animation: scroll 45s linear infinite;
+      padding-block: var(--space-24);
     }
 
     .quote-card {
-      width: min(280px, 74vw);
-      border: 1px solid rgba(31, 45, 42, 0.18);
-      background: rgba(249, 247, 244, 0.98);
-      box-shadow: 0 8px 20px rgba(31, 45, 42, 0.11);
-      padding: 0.8rem;
-      flex: 0 0 auto;
+      flex: 0 0 320px;
+      margin-right: var(--space-16);
+      border: 1px solid var(--clr-border);
+      padding: var(--space-16);
+      background: rgba(249, 247, 244, 0.95);
+      box-shadow: var(--shadow-1);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
     }
 
     .quote-card p {
-      margin: 0;
-      font-size: 0.86rem;
-      color: #2f403c;
+      font-size: 14px;
+      line-height: 1.55;
     }
 
-    .quote-card strong {
-      margin-top: 0.55rem;
+    .quote-card cite {
       display: block;
+      margin-top: var(--space-16);
+      font-size: 12px;
+      font-style: normal;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: 0.65rem;
-      color: var(--teal);
+      color: var(--clr-text-muted);
     }
 
-    @keyframes scrollX {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .cta-card {
+      position: relative;
+      overflow: hidden;
+      padding: var(--space-48) var(--space-24);
+      background: linear-gradient(135deg, #2a7a6e 0%, #1f6157 55%, #174941 100%);
+      color: #fff;
+      box-shadow: var(--shadow-2);
+    }
+
+    .cta-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -70% auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 168, 67, 0.24), transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-card p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: var(--space-16);
+    }
+
+    .cta-actions {
+      margin-top: var(--space-24);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-16);
     }
 
     .contact {
-      background: var(--teal);
-      color: #f7f6f2;
-      padding: 3rem 0;
+      background: #1f5048;
+      color: #e8f0ee;
+    }
+
+    .contact .section {
+      padding-block: 64px;
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.3rem;
-      align-items: start;
+      gap: var(--space-32);
     }
 
-    .contact .section-kicker {
-      color: rgba(247, 246, 242, 0.82);
+    .contact h2 {
+      color: #fff;
     }
 
-    .contact h3 {
-      margin-bottom: 0.75rem;
+    .contact p,
+    .contact li,
+    .contact a {
+      max-width: none;
+      color: rgba(232, 240, 238, 0.92);
     }
 
-    .contact-block p {
-      margin: 0 0 0.45rem;
-      max-width: 38ch;
-    }
-
-    .contact-phone {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      margin: 0.6rem 0 1rem;
-      color: var(--gold);
-      font-size: clamp(1.35rem, 4vw, 2rem);
+    .phone {
+      display: inline-block;
+      margin-top: var(--space-16);
+      font-size: clamp(30px, 7vw, 54px);
+      color: var(--clr-accent);
       font-family: "Cormorant Garamond", serif;
+      letter-spacing: -0.02em;
       line-height: 1;
-      letter-spacing: 0.01em;
-    }
-
-    .contact-phone i {
-      width: 20px;
-      height: 20px;
-      color: var(--gold);
     }
 
     .hours {
-      border-left: 2px solid rgba(247, 246, 242, 0.32);
-      padding-left: 0.8rem;
-      margin-top: 0.9rem;
-      font-size: 0.9rem;
+      margin-top: var(--space-24);
+      list-style: none;
+      display: grid;
+      gap: var(--space-8);
+      font-size: 14px;
     }
 
     .map-wrap {
-      border: 1px solid rgba(247, 246, 242, 0.25);
-      min-height: 320px;
-      box-shadow: 0 12px 30px rgba(20, 54, 49, 0.3);
+      min-height: 360px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      box-shadow: var(--shadow-2);
+      overflow: hidden;
     }
 
     .map-wrap iframe {
       width: 100%;
       height: 100%;
-      min-height: 320px;
+      min-height: 360px;
       border: 0;
+      filter: grayscale(0.15) contrast(1.03);
     }
 
     footer {
-      background: var(--ink);
-      color: rgba(247, 246, 242, 0.9);
-      border-top: 1px solid rgba(247, 246, 242, 0.15);
+      background: #1f2d2a;
+      color: rgba(255, 255, 255, 0.78);
+      padding-block: var(--space-64) var(--space-24);
     }
 
-    .footer-row {
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-      font-size: 0.77rem;
-      letter-spacing: 0.04em;
+    .footer-grid {
+      display: grid;
+      gap: var(--space-32);
     }
 
-    @media (min-width: 760px) {
-      .nav-inner {
-        min-height: 78px;
+    .footer-brand h3 {
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: var(--space-16);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-16);
+      font-weight: 500;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .footer-col a {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      transition: color 180ms ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--clr-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-top: var(--space-40);
+      padding-top: var(--space-16);
+      display: grid;
+      gap: var(--space-8);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (min-width: 640px) {
+      .trust-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .menu-toggle {
-        display: none;
+      .about-side-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .quote-card {
+        flex-basis: 380px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-inline: var(--space-24);
+      }
+
+      .section {
+        padding-block: 80px;
+      }
+
+      .nav-menu {
+        position: static;
+        transform: none;
+        background: transparent;
+        border: 0;
+        margin-left: auto;
       }
 
       .nav-links {
         display: flex;
-        position: static;
-        flex-direction: row;
-        gap: 1.2rem;
-        padding: 0;
-        background: transparent;
-        border-bottom: 0;
+        gap: var(--space-8);
       }
 
-      .hero {
-        grid-template-columns: 52% 48%;
+      .nav-links a {
+        border-top: 0;
+        padding: 8px 10px;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 56% 44%;
       }
 
       .hero-copy {
-        padding: 3rem min(3.6vw, 2.6rem) 2.5rem min(4.6vw, 3.5rem);
+        padding: 132px var(--space-24) 80px;
       }
 
-      .hero-image {
-        min-height: calc(100vh - 78px);
+      .hero-copy-inner {
+        margin-right: 0;
       }
 
-      .trust-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+      .hero-visual {
+        min-height: 100svh;
       }
 
-      .trust-item {
-        border-bottom: 0;
+      .about-grid,
+      .contact-grid,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .about {
-        padding: 5rem 0;
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
       }
 
-      .about-grid {
-        grid-template-columns: minmax(300px, 48%) 1fr;
-        gap: 2.4rem;
-      }
-
-      .about-photo-wrap {
-        width: 100%;
-        margin-left: -2rem;
-      }
-
-      .about-text {
-        margin-top: 1.4rem;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.2rem;
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(280px, 38%) 1fr;
-        gap: 1.4rem;
+      .footer-bottom {
+        grid-template-columns: 1fr auto;
+        align-items: center;
       }
     }
 
-    @media (min-width: 1080px) {
-      .about-grid {
-        grid-template-columns: minmax(380px, 47%) 1fr;
-        gap: 3.3rem;
+    @media (min-width: 1024px) {
+      .section {
+        padding-block: 96px;
       }
 
-      .about-photo-wrap {
-        margin-left: -4.8rem;
+      .hero-copy {
+        padding-left: max(var(--space-24), calc((100vw - var(--container-max)) / 2 + var(--space-24)));
       }
 
-      .about-accent {
-        right: -34px;
-        bottom: -30px;
-        width: 145px;
+      .hero-visual {
+        margin-right: calc(-1 * max(0px, (100vw - 100%)));
       }
 
-      .quote-card {
-        width: 292px;
+      .contact .section {
+        padding-block: 80px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      [data-animate] {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="site-nav">
+  <nav class="site-nav" id="siteNav" data-animate>
     <div class="container nav-inner">
       <a href="#top" class="brand" aria-label="Rosenthal Chiropractic Clinic home">
-        <span class="brand-mark" aria-hidden="true"><i data-lucide="cross"></i></span>
-        <span>
-          <h1>Rosenthal Chiropractic Clinic</h1>
-          <p>Feel Good. Do More.</p>
-        </span>
+        <strong>Rosenthal Chiropractic</strong>
+        <span>Feel Good. Do More.</span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
         <i data-lucide="menu"></i>
       </button>
-      <div class="nav-links" id="primaryNav">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#conditions">Conditions</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#conditions">Conditions</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
     </div>
   </nav>
 
-  <header class="hero" id="top">
-    <div class="hero-copy reveal">
-      <img src="images/header-banner.png" alt="Rosenthal Chiropractic Clinic banner" class="hero-banner" />
-      <p class="kicker">Largo, Florida | Since 1994</p>
-      <h2>Feel Good.<br />Do More.</h2>
-      <p class="hero-sub">Dr. Marcy L. Smurthwaite offers a boutique chiropractic experience with computerized precision, no cracking, and no pressure packages.</p>
-      <div class="cta-row">
-        <a class="btn" href="#contact"><i data-lucide="calendar-check"></i>Book Your Visit</a>
-        <a class="quick-phone" href="tel:+17275390075">(727) 539-0075</a>
+  <header class="hero" id="top" data-animate>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-copy-inner">
+          <span class="eyebrow">Boutique Practice Since 1994</span>
+          <h1>Feel Good.<br>Do More.</h1>
+          <p class="hero-subtext">Personal chiropractic care in Largo, Florida by Dr. Marcy L. Smurthwaite. No cracking and no twisting, with Impulse iQ precision and Cold Laser Therapy.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+17275390075">Schedule Now</a>
+            <a class="btn" style="border-color: var(--clr-border); color: var(--clr-text); background: rgba(255,255,255,0.65);" href="#services">Explore Care Options</a>
+          </div>
+          <p class="hero-meta">12855 S. Belcher Road, Suite 1, Largo, FL 33773</p>
+        </div>
       </div>
-    </div>
-    <div class="hero-image">
-      <img src="images/dr-marcy.jpg" alt="Dr. Marcy L. Smurthwaite at Rosenthal Chiropractic Clinic" />
+      <div class="hero-visual">
+        <img src="images/dr-marcy.jpg" alt="Dr. Marcy L. Smurthwaite smiling in clinic">
+        <img class="hero-ribbon" src="images/header-banner.png" alt="Rosenthal Chiropractic Clinic welcome banner">
+      </div>
     </div>
   </header>
 
-  <section class="trust-bar reveal">
+  <section class="trust-bar section" data-animate>
     <div class="container trust-grid">
-      <article class="trust-item">
+      <div class="trust-item">
         <i data-lucide="shield-check"></i>
-        <p>No cracking, no twisting</p>
-      </article>
-      <article class="trust-item">
-        <i data-lucide="landmark"></i>
-        <p>Boutique practice since 1994</p>
-      </article>
-      <article class="trust-item">
+        <span>No Cracking, No Twisting</span>
+      </div>
+      <div class="trust-item">
+        <i data-lucide="clock"></i>
+        <span>Boutique Since 1994</span>
+      </div>
+      <div class="trust-item">
         <i data-lucide="zap"></i>
-        <p>Cold Laser pioneer</p>
-      </article>
+        <span>Cold Laser Pioneer</span>
+      </div>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="container about-grid reveal">
-      <div>
-        <figure class="about-photo-wrap">
-          <img src="images/marcy-robert.jpg" alt="Dr. Marcy with her husband Robert" />
-          <img src="images/cold-laser-device.png" alt="Cold Laser therapy device" class="about-accent" />
-        </figure>
-        <img src="images/family.jpg" alt="Rosenthal family photo" class="about-family" />
+  <section class="section" id="about" data-animate>
+    <div class="container about-grid">
+      <div class="about-photo-wrap">
+        <img src="images/marcy-robert.jpg" alt="Dr. Marcy and husband Robert">
       </div>
       <div class="about-text">
-        <p class="section-kicker">About Dr. Marcy</p>
-        <h3>Care Built On Precision, Faith, And Personal Attention.</h3>
-        <p>Dr. Marcy L. Smurthwaite has served Largo families since 1994, blending clinical rigor with warm one-on-one care. She designed her clinic to stay intentionally small so every treatment plan remains personal and focused.</p>
-        <p>Known for her gentle style, she specializes in Impulse iQ Chiropractic and Cold Laser Therapy for patients who want measurable relief without forceful adjustments. Her mission trips to Mexico, fly fishing in North Carolina, and organic home cooking with Robert reflect the same grounded, intentional approach she brings to practice each day.</p>
-        <div class="credentials" aria-label="Dr. Marcy credentials and specialties">
-          <span>Practice Since 1994</span>
-          <span>Impulse iQ Specialist</span>
-          <span>Cold Laser Therapy</span>
-          <span>No Pressure Packages</span>
-          <span>Boutique Care Model</span>
+        <span class="eyebrow">About Dr. Marcy</span>
+        <h2>Experienced care with a personal approach</h2>
+        <p>Dr. Marcy L. Smurthwaite has served Largo families since 1994 through a boutique clinic model focused on one-on-one care. She is known for gentle, precise treatment that helps patients stay active without forceful adjustments.</p>
+        <p>Outside the office, she and her husband Robert enjoy missionary trips to Mexico, fly fishing in North Carolina, and cooking organic meals for family and friends. That same thoughtful energy is part of each visit.</p>
+        <div class="tag-list" aria-label="Credentials and differentiators">
+          <span class="tag">Dr. Marcy L. Smurthwaite</span>
+          <span class="tag">Impulse iQ Certified</span>
+          <span class="tag">Cold Laser Therapy</span>
+          <span class="tag">Boutique Care Model</span>
+          <span class="tag">Serving Largo Since 1994</span>
+        </div>
+        <div class="about-side-grid">
+          <figure class="about-mini">
+            <img src="images/cold-laser-device.png" alt="Cold laser therapy device used in clinic">
+            <span>Technology That Targets Healing</span>
+          </figure>
+          <figure class="about-mini">
+            <img src="images/family.jpg" alt="Dr. Marcy with family">
+            <span>Family-Centered Wellness</span>
+          </figure>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="services" id="services">
-    <div class="container reveal">
-      <p class="section-kicker">Services</p>
-      <h3>Focused Treatments For Faster, Gentler Recovery.</h3>
+  <section class="section services" id="services" data-animate>
+    <div class="container">
+      <span class="eyebrow">Services</span>
+      <h2>Targeted treatment plans built around your life</h2>
       <div class="services-grid">
-        <article class="service-card">
-          <img src="images/exam.jpg" alt="Impulse iQ chiropractic exam in progress" />
-          <div class="service-overlay">
-            <div>
-              <h4>Impulse iQ Chiropractic</h4>
-              <p>Computerized spinal analysis and gentle instrument-based corrections with no manual cracking.</p>
-              <a href="#contact">Learn More</a>
-            </div>
+        <article class="service-card card" data-animate>
+          <img src="images/exam.jpg" alt="Chiropractic exam using precision instrument">
+          <div class="service-card-content">
+            <h3>Impulse iQ Chiropractic</h3>
+            <p>Computer-guided impulse adjustments help restore alignment with controlled, gentle force. This approach supports spinal function while keeping treatment comfortable.</p>
+            <a href="tel:+17275390075" class="btn" style="border-color: rgba(255,255,255,0.44); color: #fff; width: fit-content;">Book Evaluation</a>
           </div>
         </article>
-        <article class="service-card">
-          <img src="images/cold-laser-room.jpg" alt="Cold Laser Therapy treatment room" />
-          <div class="service-overlay">
-            <div>
-              <h4>Cold Laser Therapy</h4>
-              <p>Targeted light therapy to calm inflammation, support healing, and improve mobility quickly.</p>
-              <a href="#contact">Learn More</a>
-            </div>
+        <article class="service-card card" data-animate style="--delay:120ms;">
+          <img src="images/cold-laser-room.jpg" alt="Cold laser therapy room at clinic">
+          <div class="service-card-content">
+            <h3>Cold Laser Therapy</h3>
+            <p>Focused light therapy is used to decrease inflammation and accelerate tissue recovery. Patients choose it for chronic pain, healing support, and improved mobility.</p>
+            <a href="tel:+17275390075" class="btn" style="border-color: rgba(255,255,255,0.44); color: #fff; width: fit-content;">Call For Availability</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="conditions" id="conditions">
-    <div class="container reveal">
-      <p class="section-kicker">Conditions Treated</p>
-      <h3>Relief For Everyday Pain And Complex Cases.</h3>
-      <div class="tag-list" aria-label="Conditions treated by Rosenthal Chiropractic Clinic">
-        <span class="tag">Arthritis</span>
-        <span class="tag">Back Pain</span>
-        <span class="tag">Carpal Tunnel</span>
-        <span class="tag">Fibromyalgia</span>
-        <span class="tag">Headaches</span>
-        <span class="tag">Hip Pain</span>
-        <span class="tag">Knee Pain</span>
-        <span class="tag">Neck Pain</span>
-        <span class="tag">Sciatica</span>
-        <span class="tag">Shoulder Pain</span>
-        <span class="tag">Sports Injuries</span>
-        <span class="tag">TMJ</span>
-        <span class="tag">Whiplash</span>
-        <span class="tag">Work Injuries</span>
-      </div>
+  <section class="section conditions" id="conditions" data-animate>
+    <div class="container">
+      <span class="eyebrow">Conditions We Treat</span>
+      <h2>Care for chronic pain, injury recovery, and mobility</h2>
+      <ul class="conditions-list" aria-label="List of conditions treated">
+        <li>Arthritis</li>
+        <li>Back Pain</li>
+        <li>Carpal Tunnel</li>
+        <li>Fibromyalgia</li>
+        <li>Headaches</li>
+        <li>Hip Pain</li>
+        <li>Knee Pain</li>
+        <li>Neck Pain</li>
+        <li>Sciatica</li>
+        <li>Shoulder Pain</li>
+        <li>Sports Injuries</li>
+        <li>TMJ</li>
+        <li>Whiplash</li>
+        <li>Work Injuries</li>
+      </ul>
     </div>
   </section>
 
-  <section class="testimonials" id="testimonials">
-    <div class="container reveal">
-      <div class="testi-intro">
-        <p class="section-kicker">Patient Stories</p>
-        <h3>What Patients Say After Care With Dr. Marcy.</h3>
-      </div>
+  <section class="section testimonials" id="testimonials" data-animate>
+    <div class="container">
+      <span class="eyebrow">Patient Stories</span>
+      <h2>What patients say after treatment</h2>
     </div>
-    <div class="marquee" aria-label="Patient testimonials">
+    <div class="marquee" aria-label="Patient testimonials scrolling marquee">
       <div class="marquee-track">
         <article class="quote-card">
           <p>"I thought I would need surgery, but my pain is gone. I was able to dance at my grandson wedding!"</p>
-          <strong>D.S.</strong>
+          <cite>D.S.</cite>
         </article>
         <article class="quote-card">
           <p>"I am leaving here a different person than the one who came in."</p>
-          <strong>M.G., since 1990</strong>
+          <cite>M.G., since 1990</cite>
         </article>
         <article class="quote-card">
           <p>"Dr. Marcy turned me from a real skeptic into a believer."</p>
-          <strong>D.R.B.</strong>
+          <cite>D.R.B.</cite>
         </article>
         <article class="quote-card">
           <p>"I feel AMAZING! Dr. Marcy is a magician!"</p>
-          <strong>S.R.</strong>
+          <cite>S.R.</cite>
         </article>
         <article class="quote-card">
           <p>"After 30 years of back pain I have finally found relief, and without being cracked!"</p>
-          <strong>P.L.</strong>
+          <cite>P.L.</cite>
         </article>
         <article class="quote-card">
           <p>"She is precise, caring, professional."</p>
-          <strong>T.K.</strong>
+          <cite>T.K.</cite>
         </article>
         <article class="quote-card">
           <p>"I was terrified of chiropractors. Now I cannot imagine life without these visits."</p>
-          <strong>J.M.</strong>
+          <cite>J.M.</cite>
         </article>
         <article class="quote-card">
           <p>"My migraines are gone after 3 sessions."</p>
-          <strong>A.V.</strong>
+          <cite>A.V.</cite>
         </article>
+
         <article class="quote-card" aria-hidden="true">
           <p>"I thought I would need surgery, but my pain is gone. I was able to dance at my grandson wedding!"</p>
-          <strong>D.S.</strong>
+          <cite>D.S.</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"I am leaving here a different person than the one who came in."</p>
-          <strong>M.G., since 1990</strong>
+          <cite>M.G., since 1990</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"Dr. Marcy turned me from a real skeptic into a believer."</p>
-          <strong>D.R.B.</strong>
+          <cite>D.R.B.</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"I feel AMAZING! Dr. Marcy is a magician!"</p>
-          <strong>S.R.</strong>
+          <cite>S.R.</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"After 30 years of back pain I have finally found relief, and without being cracked!"</p>
-          <strong>P.L.</strong>
+          <cite>P.L.</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"She is precise, caring, professional."</p>
-          <strong>T.K.</strong>
+          <cite>T.K.</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"I was terrified of chiropractors. Now I cannot imagine life without these visits."</p>
-          <strong>J.M.</strong>
+          <cite>J.M.</cite>
         </article>
         <article class="quote-card" aria-hidden="true">
           <p>"My migraines are gone after 3 sessions."</p>
-          <strong>A.V.</strong>
+          <cite>A.V.</cite>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <div class="container contact-grid reveal">
-      <div class="contact-block">
-        <p class="section-kicker">Visit The Clinic</p>
-        <h3>Rosenthal Chiropractic Clinic</h3>
-        <p>Dr. Marcy L. Smurthwaite</p>
-        <p>12855 S. Belcher Road, Suite 1<br />Largo, FL 33773</p>
-        <a class="contact-phone" href="tel:+17275390075"><i data-lucide="phone-call"></i>(727) 539-0075</a>
-        <div class="hours">
-          <p><strong>Hours</strong></p>
-          <p>Mon to Thu: 9:00 AM to 5:30 PM</p>
-          <p>Friday: 9:00 AM to 12:00 PM</p>
-          <p>Sat and Sun: Closed</p>
+  <section class="section cta" data-animate>
+    <div class="container">
+      <div class="cta-card">
+        <span class="eyebrow" style="border-color: rgba(255,255,255,0.34); background: rgba(255,255,255,0.08); color: #fff;">Next Step</span>
+        <h2>Schedule Your Visit</h2>
+        <p>Call today to book your first appointment with Dr. Marcy. You will get a focused evaluation and a treatment plan designed for your goals.</p>
+        <div class="cta-actions">
+          <a href="tel:+17275390075" class="btn btn-gold">(727) 539-0075</a>
+          <a href="#contact" class="btn" style="border-color: rgba(255,255,255,0.36); color: #fff;">Get Directions</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" data-animate>
+    <div class="container section contact-grid">
+      <div>
+        <span class="eyebrow" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); color: #fff;">Visit The Clinic</span>
+        <h2>Rosenthal Chiropractic Clinic</h2>
+        <p>12855 S. Belcher Road, Suite 1<br>Largo, FL 33773</p>
+        <a class="phone" href="tel:+17275390075">(727) 539-0075</a>
+        <ul class="hours">
+          <li>Monday to Thursday: 9:00 AM to 5:00 PM</li>
+          <li>Friday: By appointment</li>
+          <li>Saturday and Sunday: Closed</li>
+        </ul>
       </div>
       <div class="map-wrap">
         <iframe
           title="Map to Rosenthal Chiropractic Clinic"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://maps.google.com/maps?q=12855%20S.%20Belcher%20Road%2C%20Suite%201%2C%20Largo%2C%20FL%2033773&t=&z=14&ie=UTF8&iwloc=&output=embed"
-          allowfullscreen>
+          src="https://www.google.com/maps?q=12855+S.+Belcher+Road+Suite+1+Largo+FL+33773&output=embed">
         </iframe>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container footer-row">
-      <span>Rosenthal Chiropractic Clinic. All rights reserved.</span>
-      <span>(727) 539-0075</span>
+  <footer data-animate>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Rosenthal Chiropractic Clinic</h3>
+          <p>Dr. Marcy L. Smurthwaite offers precise, gentle chiropractic care with Impulse iQ and Cold Laser Therapy in Largo, Florida.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#conditions">Conditions</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+17275390075">(727) 539-0075</a></li>
+            <li><a href="#contact">12855 S. Belcher Road</a></li>
+            <li><a href="#contact">Suite 1, Largo FL 33773</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Clinic Focus</h4>
+          <ul>
+            <li>No Cracking, No Twisting</li>
+            <li>Boutique Practice Since 1994</li>
+            <li>Impulse iQ</li>
+            <li>Cold Laser Therapy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright 2026 Rosenthal Chiropractic Clinic. All rights reserved.</p>
+        <p>Feel Good. Do More.</p>
+      </div>
     </div>
   </footer>
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const primaryNav = document.getElementById("primaryNav");
+    const nav = document.getElementById("siteNav");
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navMenu");
 
-    if (menuToggle && primaryNav) {
-      menuToggle.addEventListener("click", () => {
-        const isOpen = primaryNav.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    const setNavState = () => {
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    };
+
+    setNavState();
+    window.addEventListener("scroll", setNavState);
+
+    navToggle.addEventListener("click", () => {
+      const open = navMenu.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.innerHTML = open ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+
+    navMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.innerHTML = '<i data-lucide="menu"></i>';
+        lucide.createIcons();
       });
+    });
 
-      primaryNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          primaryNav.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-        });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
       });
-    }
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    document.querySelectorAll(".reveal").forEach((section) => {
-      observer.observe(section);
+    document.querySelectorAll("[data-animate]").forEach((el) => {
+      observer.observe(el);
     });
 
     lucide.createIcons();
