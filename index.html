@@ -1,47 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosenthal Chiropractic Clinic | Feel Good! Do More!</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rosenthal Chiropractic Clinic | Feel Good. Do More.</title>
+  <meta name="description" content="Rosenthal Chiropractic Clinic in Largo, Florida. Dr. Marcy L. Smurthwaite offers gentle Impulse iQ Chiropractic and Cold Laser Therapy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --white: #fff;
       --cream: #f9f7f4;
       --teal: #2a7a6e;
       --gold: #d4a843;
-      --text: #1f2d2a;
-      --shadow: 0 12px 32px rgba(20, 38, 36, 0.12);
+      --ink: #1f2d2a;
+      --muted: #53645f;
+      --line: #d8d2c8;
+      --tint: #f2eee8;
+      --shadow: 0 14px 34px rgba(31, 45, 42, 0.15);
+      --radius-soft: 3px;
+      --max: 1180px;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html,
     body {
-      width: 100%;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
       scroll-behavior: smooth;
     }
 
-    body {
-      font-family: "Source Sans Pro", sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: "Lora", serif;
-      line-height: 1.2;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     a {
@@ -50,302 +49,499 @@
     }
 
     .container {
-      width: min(1120px, 92%);
+      width: min(var(--max), calc(100% - 2.5rem));
       margin: 0 auto;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .reveal.is-visible {
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
     .site-nav {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .site-nav.scrolled {
-      background: rgba(255, 255, 255, 0.97);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
+      background: rgba(249, 247, 244, 0.96);
+      backdrop-filter: blur(4px);
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 76px;
-      padding: 0.5rem 0;
-    }
-
-    .logo {
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.02em;
-      transition: color 0.3s ease;
-    }
-
-    .site-nav.scrolled .logo {
-      color: var(--teal);
-    }
-
-    .menu-btn {
-      background: none;
-      border: 0;
-      color: var(--white);
-      font-size: 1.8rem;
-      line-height: 1;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .site-nav.scrolled .menu-btn {
-      color: var(--teal);
-    }
-
-    .nav-links {
-      list-style: none;
-      position: absolute;
-      top: 76px;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.98);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      border-bottom: 1px solid rgba(42, 122, 110, 0.12);
-    }
-
-    .nav-links.open {
-      max-height: 260px;
-    }
-
-    .nav-links a {
-      display: block;
-      padding: 0.95rem 1.2rem;
-      color: var(--teal);
-      font-weight: 600;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      align-items: center;
-      background:
-        linear-gradient(130deg, rgba(18, 34, 31, 0.68), rgba(42, 122, 110, 0.48)),
-        url("images/dr-marcy.jpg") center/cover no-repeat;
-      color: var(--white);
-      padding-top: 76px;
-    }
-
-    .hero-content {
-      width: min(760px, 100%);
-      padding: 2rem 0 4rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.3rem, 7vw, 4.2rem);
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: clamp(1.05rem, 2.8vw, 1.4rem);
-      max-width: 62ch;
-      margin-bottom: 2rem;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      background: var(--gold);
-      color: #2a2110;
-      font-weight: 700;
-      padding: 0.9rem 1.5rem;
-      border-radius: 999px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 10px 22px rgba(212, 168, 67, 0.25);
-    }
-
-    .cta-btn:hover,
-    .cta-btn:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 13px 24px rgba(212, 168, 67, 0.35);
-    }
-
-    section {
-      padding: 4.5rem 0;
-    }
-
-    .welcome-strip {
-      background: var(--cream);
-      padding: 3rem 0;
-    }
-
-    .welcome-grid {
-      display: grid;
+      min-height: 72px;
       gap: 1rem;
     }
 
-    .welcome-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 1.3rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--teal);
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      flex: 0 0 auto;
+    }
+
+    .brand-mark i {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.25;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .brand p {
+      margin: 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+    }
+
+    .menu-toggle i {
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 72px;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
+      padding: 0.75rem 1.25rem 1rem;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid transparent;
+      width: fit-content;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--teal);
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: 1px solid rgba(31, 45, 42, 0.14);
+    }
+
+    .hero-copy {
+      padding: 2.25rem 1.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      right: -6rem;
+      top: -4rem;
+      width: 18rem;
+      height: 18rem;
+      border: 1px solid rgba(42, 122, 110, 0.15);
+      pointer-events: none;
+    }
+
+    .hero-banner {
+      max-width: 240px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(31, 45, 42, 0.18);
       box-shadow: var(--shadow);
     }
 
-    .welcome-icon {
-      font-size: 1.5rem;
+    .kicker {
+      margin: 0 0 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
       color: var(--teal);
-      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
     }
 
-    .welcome-card h3 {
-      margin-bottom: 0.4rem;
+    .hero h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-sub {
+      margin: 1rem 0 1.5rem;
+      max-width: 34ch;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: 1px solid #b28730;
+      background: var(--gold);
+      color: #1f2118;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      padding: 0.85rem 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-radius: var(--radius-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 18px rgba(212, 168, 67, 0.32);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 18px rgba(212, 168, 67, 0.36);
+    }
+
+    .quick-phone {
+      font-size: 0.88rem;
+      color: var(--ink);
+      border-bottom: 1px solid rgba(31, 45, 42, 0.35);
+    }
+
+    .hero-image {
+      min-height: 44vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .trust-bar {
+      border-bottom: 1px solid rgba(31, 45, 42, 0.14);
+      background: #f5f2ec;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(31, 45, 42, 0.1);
+    }
+
+    .trust-item:last-child {
+      border-bottom: 0;
+    }
+
+    .trust-item i {
+      width: 20px;
+      height: 20px;
       color: var(--teal);
-      font-size: 1.2rem;
+      flex: 0 0 auto;
+    }
+
+    .about {
+      padding: 3.5rem 0;
+      overflow: hidden;
     }
 
     .about-grid {
       display: grid;
-      gap: 1.6rem;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
       align-items: start;
+      position: relative;
     }
 
-    .about-photo {
-      width: 100%;
-      border-radius: 18px;
+    .about-photo-wrap {
+      position: relative;
+      width: min(92%, 560px);
       box-shadow: var(--shadow);
+      z-index: 2;
     }
 
-    .about-copy h2 {
-      color: var(--teal);
-      margin-bottom: 1rem;
-      font-size: clamp(1.8rem, 4.2vw, 2.4rem);
-    }
-
-    .about-copy p {
-      margin-bottom: 1rem;
-    }
-
-    .credentials {
-      padding-left: 1.2rem;
-    }
-
-    .credentials li {
-      margin-bottom: 0.45rem;
-    }
-
-    .services {
-      background: var(--cream);
-    }
-
-    .services h2 {
-      text-align: center;
-      color: var(--teal);
-      margin-bottom: 2rem;
-      font-size: clamp(1.8rem, 4.2vw, 2.4rem);
-    }
-
-    .service-grid {
-      display: grid;
-      gap: 1.2rem;
-    }
-
-    .service-card {
-      background: var(--white);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .service-card img {
+    .about-photo-wrap img {
       width: 100%;
-      height: 240px;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
     }
 
-    .service-content {
+    .about-accent {
+      position: absolute;
+      right: -26px;
+      bottom: -26px;
+      width: 130px;
+      border: 1px solid rgba(31, 45, 42, 0.18);
+      box-shadow: 0 10px 26px rgba(31, 45, 42, 0.2);
+      z-index: 3;
+    }
+
+    .about-family {
+      margin-top: 0.9rem;
+      width: min(96%, 580px);
+      border: 1px solid rgba(31, 45, 42, 0.14);
+      box-shadow: 0 10px 24px rgba(31, 45, 42, 0.14);
+    }
+
+    .about-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-kicker {
+      margin: 0 0 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--teal);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .about h3,
+    .services h3,
+    .conditions h3,
+    .testimonials h3,
+    .contact h3 {
+      margin: 0 0 0.8rem;
+      font-family: "Cormorant Garamond", serif;
+      line-height: 1.06;
+      font-size: clamp(2rem, 4.8vw, 3rem);
+      letter-spacing: 0.01em;
+    }
+
+    .about-text p {
+      margin: 0 0 0.9rem;
+      max-width: 50ch;
+      color: #2f403c;
+    }
+
+    .credentials {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem;
+    }
+
+    .credentials span {
+      border: 1px solid rgba(31, 45, 42, 0.32);
+      padding: 0.24rem 0.46rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.64rem;
+      background: rgba(249, 247, 244, 0.75);
+    }
+
+    .services {
+      padding: 1.2rem 0 3.2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.1rem;
+    }
+
+    .service-card {
+      min-height: 290px;
+      position: relative;
+      overflow: hidden;
+      color: #f8f7f5;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31, 45, 42, 0.2);
+      border-radius: var(--radius-soft);
+      transform: translateY(0);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(31, 45, 42, 0.25);
+    }
+
+    .service-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 14, 13, 0.18), rgba(10, 14, 13, 0.72));
+      display: flex;
+      align-items: flex-end;
       padding: 1.2rem;
     }
 
-    .service-content h3 {
-      color: var(--teal);
-      margin-bottom: 0.6rem;
-      font-size: 1.25rem;
+    .service-overlay h4 {
+      margin: 0 0 0.25rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.95rem;
+      line-height: 0.95;
+    }
+
+    .service-overlay p {
+      margin: 0 0 0.6rem;
+      max-width: 35ch;
+      color: rgba(248, 247, 245, 0.9);
+      font-size: 0.92rem;
+    }
+
+    .service-overlay a {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      border-bottom: 1px solid rgba(248, 247, 245, 0.8);
     }
 
     .conditions {
+      padding: 0 0 3.2rem;
+    }
+
+    .tag-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 1.8rem;
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 0.45rem;
+      margin-top: 1rem;
     }
 
-    .conditions span {
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(42, 122, 110, 0.11);
-      color: var(--teal);
-      font-weight: 600;
-      font-size: 0.92rem;
-      white-space: nowrap;
+    .tag {
+      border: 1px solid rgba(31, 45, 42, 0.32);
+      padding: 0.28rem 0.52rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      color: #2a3b36;
+      background: transparent;
     }
 
-    .testimonials h2 {
-      text-align: center;
-      color: var(--teal);
-      margin-bottom: 1.8rem;
-      font-size: clamp(1.8rem, 4.2vw, 2.4rem);
+    .testimonials {
+      padding: 3rem 0;
+      background: var(--tint);
+      border-top: 1px solid rgba(31, 45, 42, 0.12);
+      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
+      overflow: hidden;
+    }
+
+    .testi-intro {
+      margin-bottom: 1.1rem;
     }
 
     .marquee {
+      width: 100%;
       overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      border-top: 1px solid rgba(31, 45, 42, 0.12);
+      border-bottom: 1px solid rgba(31, 45, 42, 0.12);
+      padding: 0.85rem 0;
+      background: rgba(249, 247, 244, 0.4);
     }
 
     .marquee-track {
       display: flex;
-      gap: 1rem;
       width: max-content;
-      animation: scrollLeft 42s linear infinite;
+      gap: 0.85rem;
+      animation: scrollX 45s linear infinite;
     }
 
     .quote-card {
-      width: min(360px, 86vw);
-      background: var(--cream);
-      padding: 1.1rem 1rem;
-      border-left: 4px solid var(--teal);
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(24, 39, 37, 0.1);
+      width: min(280px, 74vw);
+      border: 1px solid rgba(31, 45, 42, 0.18);
+      background: rgba(249, 247, 244, 0.98);
+      box-shadow: 0 8px 20px rgba(31, 45, 42, 0.11);
+      padding: 0.8rem;
+      flex: 0 0 auto;
     }
 
     .quote-card p {
-      font-family: "Lora", serif;
-      font-style: italic;
-      margin-bottom: 0.7rem;
+      margin: 0;
+      font-size: 0.86rem;
+      color: #2f403c;
     }
 
-    .quote-card span {
-      font-size: 0.92rem;
-      color: #35514b;
-      font-weight: 600;
+    .quote-card strong {
+      margin-top: 0.55rem;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      color: var(--teal);
     }
 
-    @keyframes scrollLeft {
+    @keyframes scrollX {
       from {
         transform: translateX(0);
       }
@@ -356,349 +552,456 @@
 
     .contact {
       background: var(--teal);
-      color: var(--white);
-      text-align: center;
+      color: #f7f6f2;
+      padding: 3rem 0;
     }
 
-    .contact h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      margin-bottom: 1rem;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+      align-items: start;
     }
 
-    .contact .phone {
-      display: inline-block;
-      font-size: clamp(1.6rem, 5.5vw, 2.6rem);
-      font-weight: 700;
-      margin-bottom: 0.85rem;
+    .contact .section-kicker {
+      color: rgba(247, 246, 242, 0.82);
+    }
+
+    .contact h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-block p {
+      margin: 0 0 0.45rem;
+      max-width: 38ch;
+    }
+
+    .contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0.6rem 0 1rem;
+      color: var(--gold);
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      font-family: "Cormorant Garamond", serif;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .contact-phone i {
+      width: 20px;
+      height: 20px;
       color: var(--gold);
     }
 
-    .contact p {
-      margin-bottom: 0.5rem;
-      font-size: 1.07rem;
+    .hours {
+      border-left: 2px solid rgba(247, 246, 242, 0.32);
+      padding-left: 0.8rem;
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
     }
 
     .map-wrap {
-      margin-top: 1.3rem;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(247, 246, 242, 0.25);
+      min-height: 320px;
+      box-shadow: 0 12px 30px rgba(20, 54, 49, 0.3);
     }
 
     .map-wrap iframe {
       width: 100%;
-      height: 320px;
+      height: 100%;
+      min-height: 320px;
       border: 0;
     }
 
     footer {
-      background: #174841;
-      color: rgba(255, 255, 255, 0.9);
-      text-align: center;
-      padding: 1.2rem 0;
-      font-size: 0.95rem;
+      background: var(--ink);
+      color: rgba(247, 246, 242, 0.9);
+      border-top: 1px solid rgba(247, 246, 242, 0.15);
     }
 
-    footer small {
-      display: block;
-      margin-top: 0.4rem;
-      opacity: 0.92;
+    .footer-row {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.77rem;
+      letter-spacing: 0.04em;
     }
 
     @media (min-width: 760px) {
-      .menu-btn {
+      .nav-inner {
+        min-height: 78px;
+      }
+
+      .menu-toggle {
         display: none;
       }
 
       .nav-links {
+        display: flex;
         position: static;
-        max-height: none;
-        overflow: visible;
         flex-direction: row;
+        gap: 1.2rem;
+        padding: 0;
         background: transparent;
-        border: 0;
-        gap: 0.85rem;
+        border-bottom: 0;
       }
 
-      .nav-links a {
-        color: var(--white);
-        padding: 0.45rem 0.7rem;
+      .hero {
+        grid-template-columns: 52% 48%;
       }
 
-      .site-nav.scrolled .nav-links a {
-        color: var(--teal);
+      .hero-copy {
+        padding: 3rem min(3.6vw, 2.6rem) 2.5rem min(4.6vw, 3.5rem);
       }
 
-      .welcome-grid,
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .hero-image {
+        min-height: calc(100vh - 78px);
+      }
+
+      .trust-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .trust-item {
+        border-bottom: 0;
+      }
+
+      .about {
+        padding: 5rem 0;
       }
 
       .about-grid {
-        grid-template-columns: 0.95fr 1.05fr;
+        grid-template-columns: minmax(300px, 48%) 1fr;
+        gap: 2.4rem;
+      }
+
+      .about-photo-wrap {
+        width: 100%;
+        margin-left: -2rem;
+      }
+
+      .about-text {
+        margin-top: 1.4rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(280px, 38%) 1fr;
+        gap: 1.4rem;
       }
     }
 
-    @media (min-width: 980px) {
-      .welcome-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    @media (min-width: 1080px) {
+      .about-grid {
+        grid-template-columns: minmax(380px, 47%) 1fr;
+        gap: 3.3rem;
       }
 
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .about-photo-wrap {
+        margin-left: -4.8rem;
       }
 
-      .service-card img {
-        height: 280px;
+      .about-accent {
+        right: -34px;
+        bottom: -30px;
+        width: 145px;
+      }
+
+      .quote-card {
+        width: 292px;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="site-nav" id="siteNav">
+  <nav class="site-nav">
     <div class="container nav-inner">
-      <a href="#" class="logo">Rosenthal Chiropractic</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a href="#top" class="brand" aria-label="Rosenthal Chiropractic Clinic home">
+        <span class="brand-mark" aria-hidden="true"><i data-lucide="cross"></i></span>
+        <span>
+          <h1>Rosenthal Chiropractic Clinic</h1>
+          <p>Feel Good. Do More.</p>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="nav-links" id="primaryNav">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#conditions">Conditions</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </nav>
 
-  <header class="hero">
-    <div class="container hero-content reveal">
-      <h1>Feel Good. Do More.</h1>
-      <p>Gentle, individualized chiropractic care in Largo, Florida — no cracking, no packages, no pressure.</p>
-      <a class="cta-btn" href="tel:7275390075">Schedule Your Visit</a>
+  <header class="hero" id="top">
+    <div class="hero-copy reveal">
+      <img src="images/header-banner.png" alt="Rosenthal Chiropractic Clinic banner" class="hero-banner" />
+      <p class="kicker">Largo, Florida | Since 1994</p>
+      <h2>Feel Good.<br />Do More.</h2>
+      <p class="hero-sub">Dr. Marcy L. Smurthwaite offers a boutique chiropractic experience with computerized precision, no cracking, and no pressure packages.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact"><i data-lucide="calendar-check"></i>Book Your Visit</a>
+        <a class="quick-phone" href="tel:+17275390075">(727) 539-0075</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/dr-marcy.jpg" alt="Dr. Marcy L. Smurthwaite at Rosenthal Chiropractic Clinic" />
     </div>
   </header>
 
-  <section class="welcome-strip">
-    <div class="container welcome-grid">
-      <article class="welcome-card reveal">
-        <div class="welcome-icon" aria-hidden="true">✦</div>
-        <h3>No Manual Cracking</h3>
-        <p>Computerized, gentle adjustments only</p>
+  <section class="trust-bar reveal">
+    <div class="container trust-grid">
+      <article class="trust-item">
+        <i data-lucide="shield-check"></i>
+        <p>No cracking, no twisting</p>
       </article>
-      <article class="welcome-card reveal">
-        <div class="welcome-icon" aria-hidden="true">⌛</div>
-        <h3>Boutique Practice Since 1994</h3>
-        <p>Solo practice, personalized care every visit</p>
+      <article class="trust-item">
+        <i data-lucide="landmark"></i>
+        <p>Boutique practice since 1994</p>
       </article>
-      <article class="welcome-card reveal">
-        <div class="welcome-icon" aria-hidden="true">✶</div>
-        <h3>Cold Laser Pioneer</h3>
-        <p>First in Tampa Bay to offer LLLT technology</p>
+      <article class="trust-item">
+        <i data-lucide="zap"></i>
+        <p>Cold Laser pioneer</p>
       </article>
     </div>
   </section>
 
-  <section id="about">
-    <div class="container about-grid">
-      <div class="reveal">
-        <img class="about-photo" src="images/marcy-robert.jpg" alt="Dr. Marcy Smurthwaite with her husband Robert">
+  <section class="about" id="about">
+    <div class="container about-grid reveal">
+      <div>
+        <figure class="about-photo-wrap">
+          <img src="images/marcy-robert.jpg" alt="Dr. Marcy with her husband Robert" />
+          <img src="images/cold-laser-device.png" alt="Cold Laser therapy device" class="about-accent" />
+        </figure>
+        <img src="images/family.jpg" alt="Rosenthal family photo" class="about-family" />
       </div>
-      <div class="about-copy reveal">
-        <h2>Meet Dr. Marcy</h2>
-        <p>Dr. Marcy Smurthwaite has been in private practice since 1994, serving Pinellas County with gentle, computerized chiropractic care. A native Floridian and certified laser therapy specialist, she was the first doctor in Tampa Bay to use Cold Laser Technology. Her philosophy is simple: medicine alters body function. Chiropractic restores it.</p>
-        <p>When she's not in the clinic, you'll find her cooking organic food with her husband Robert, fly fishing in North Carolina, or on a missionary trip treating her Mayan friends in Mexico.</p>
-        <ul class="credentials">
-          <li>Doctor of Chiropractic, Life University, Atlanta, GA</li>
-          <li>CIA Certified — Impulse iQ Adjusting Instrument</li>
-          <li>Certified, American Society of Laser Therapy</li>
-          <li>Past President, Pinellas County Chiropractic Society (2013-14)</li>
-          <li>100+ hours Spinal Rehabilitation</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="reveal">Services</h2>
-      <div class="service-grid">
-        <article class="service-card reveal">
-          <img src="images/exam.jpg" alt="Impulse iQ chiropractic exam in progress">
-          <div class="service-content">
-            <h3>IMPULSE iQ CHIROPRACTIC</h3>
-            <p>Computerized, gentle adjustments — no popping, no twisting, no discomfort. The Impulse iQ delivers precise force tailored to your spine. And you keep your clothes on.</p>
-          </div>
-        </article>
-        <article class="service-card reveal">
-          <img src="images/cold-laser-room.jpg" alt="Cold laser therapy treatment room">
-          <div class="service-content">
-            <h3>COLD LASER THERAPY</h3>
-            <p>FDA-cleared Low-Level Laser Therapy. Dr. Marcy was the first in Tampa Bay to offer this non-invasive treatment. No heat, no discomfort — just deep tissue healing.</p>
-          </div>
-        </article>
-      </div>
-      <div class="conditions reveal" aria-label="Conditions treated">
-        <span>Arthritis</span>
-        <span>Back Pain</span>
-        <span>Bursitis</span>
-        <span>Carpal Tunnel</span>
-        <span>Degenerative Disc Disease</span>
-        <span>Fibromyalgia</span>
-        <span>Herniated Discs</span>
-        <span>Knee Pain</span>
-        <span>Migraines</span>
-        <span>Plantar Fasciitis</span>
-        <span>Sciatica</span>
-        <span>Tendonitis</span>
-        <span>TMJ</span>
-        <span>Whiplash</span>
-        <span>Sports Injuries</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials" class="testimonials">
-    <div class="container">
-      <h2 class="reveal">Testimonials</h2>
-      <div class="marquee reveal">
-        <div class="marquee-track">
-          <article class="quote-card">
-            <p>"Dr. Marcy has helped me so much! I thought I would need surgery, but my pain is gone now. I was able to dance at my grandson's wedding!"</p>
-            <span>D.S., patient since 2025</span>
-          </article>
-          <article class="quote-card">
-            <p>"I feel so much better! I'm leaving here a different person than the one who came in."</p>
-            <span>M.G., patient since 1990</span>
-          </article>
-          <article class="quote-card">
-            <p>"After years and years of agony, the pain is almost gone after just a few weeks. Best money I have ever spent!"</p>
-            <span>W.M., patient since 2022</span>
-          </article>
-          <article class="quote-card">
-            <p>"I've been to at least 12 other chiropractors, and I like your way the best!"</p>
-            <span>W.J., patient since 2021</span>
-          </article>
-          <article class="quote-card">
-            <p>"Dr. Marcy turned me from a real skeptic into a believer. She did more for my back in one visit than any other doctor."</p>
-            <span>D.R.B., patient since 2020</span>
-          </article>
-          <article class="quote-card">
-            <p>"I feel I can even breathe better after my adjustment!"</p>
-            <span>C.K., patient since 2018</span>
-          </article>
-          <article class="quote-card">
-            <p>"I became a believer when I stood up after my first adjustment and said AHHHH!"</p>
-            <span>R.J., patient since 2012</span>
-          </article>
-          <article class="quote-card">
-            <p>"Since my first appointment last week, I feel AMAZING! Dr. Marcy is a magician!"</p>
-            <span>S.R., patient since 2020</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"Dr. Marcy has helped me so much! I thought I would need surgery, but my pain is gone now. I was able to dance at my grandson's wedding!"</p>
-            <span>D.S., patient since 2025</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"I feel so much better! I'm leaving here a different person than the one who came in."</p>
-            <span>M.G., patient since 1990</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"After years and years of agony, the pain is almost gone after just a few weeks. Best money I have ever spent!"</p>
-            <span>W.M., patient since 2022</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"I've been to at least 12 other chiropractors, and I like your way the best!"</p>
-            <span>W.J., patient since 2021</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"Dr. Marcy turned me from a real skeptic into a believer. She did more for my back in one visit than any other doctor."</p>
-            <span>D.R.B., patient since 2020</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"I feel I can even breathe better after my adjustment!"</p>
-            <span>C.K., patient since 2018</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"I became a believer when I stood up after my first adjustment and said AHHHH!"</p>
-            <span>R.J., patient since 2012</span>
-          </article>
-          <article class="quote-card" aria-hidden="true">
-            <p>"Since my first appointment last week, I feel AMAZING! Dr. Marcy is a magician!"</p>
-            <span>S.R., patient since 2020</span>
-          </article>
+      <div class="about-text">
+        <p class="section-kicker">About Dr. Marcy</p>
+        <h3>Care Built On Precision, Faith, And Personal Attention.</h3>
+        <p>Dr. Marcy L. Smurthwaite has served Largo families since 1994, blending clinical rigor with warm one-on-one care. She designed her clinic to stay intentionally small so every treatment plan remains personal and focused.</p>
+        <p>Known for her gentle style, she specializes in Impulse iQ Chiropractic and Cold Laser Therapy for patients who want measurable relief without forceful adjustments. Her mission trips to Mexico, fly fishing in North Carolina, and organic home cooking with Robert reflect the same grounded, intentional approach she brings to practice each day.</p>
+        <div class="credentials" aria-label="Dr. Marcy credentials and specialties">
+          <span>Practice Since 1994</span>
+          <span>Impulse iQ Specialist</span>
+          <span>Cold Laser Therapy</span>
+          <span>No Pressure Packages</span>
+          <span>Boutique Care Model</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section class="services" id="services">
     <div class="container reveal">
-      <h2>Ready to Feel Good?</h2>
-      <a class="phone" href="tel:7275390075">(727) 539-0075</a>
-      <p>12855 S. Belcher Road, Suite 1, Largo, FL 33773</p>
-      <p>Mon/Wed/Fri 9am-5pm | Tue/Thu 9am-12pm</p>
+      <p class="section-kicker">Services</p>
+      <h3>Focused Treatments For Faster, Gentler Recovery.</h3>
+      <div class="services-grid">
+        <article class="service-card">
+          <img src="images/exam.jpg" alt="Impulse iQ chiropractic exam in progress" />
+          <div class="service-overlay">
+            <div>
+              <h4>Impulse iQ Chiropractic</h4>
+              <p>Computerized spinal analysis and gentle instrument-based corrections with no manual cracking.</p>
+              <a href="#contact">Learn More</a>
+            </div>
+          </div>
+        </article>
+        <article class="service-card">
+          <img src="images/cold-laser-room.jpg" alt="Cold Laser Therapy treatment room" />
+          <div class="service-overlay">
+            <div>
+              <h4>Cold Laser Therapy</h4>
+              <p>Targeted light therapy to calm inflammation, support healing, and improve mobility quickly.</p>
+              <a href="#contact">Learn More</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="conditions" id="conditions">
+    <div class="container reveal">
+      <p class="section-kicker">Conditions Treated</p>
+      <h3>Relief For Everyday Pain And Complex Cases.</h3>
+      <div class="tag-list" aria-label="Conditions treated by Rosenthal Chiropractic Clinic">
+        <span class="tag">Arthritis</span>
+        <span class="tag">Back Pain</span>
+        <span class="tag">Carpal Tunnel</span>
+        <span class="tag">Fibromyalgia</span>
+        <span class="tag">Headaches</span>
+        <span class="tag">Hip Pain</span>
+        <span class="tag">Knee Pain</span>
+        <span class="tag">Neck Pain</span>
+        <span class="tag">Sciatica</span>
+        <span class="tag">Shoulder Pain</span>
+        <span class="tag">Sports Injuries</span>
+        <span class="tag">TMJ</span>
+        <span class="tag">Whiplash</span>
+        <span class="tag">Work Injuries</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonials">
+    <div class="container reveal">
+      <div class="testi-intro">
+        <p class="section-kicker">Patient Stories</p>
+        <h3>What Patients Say After Care With Dr. Marcy.</h3>
+      </div>
+    </div>
+    <div class="marquee" aria-label="Patient testimonials">
+      <div class="marquee-track">
+        <article class="quote-card">
+          <p>"I thought I would need surgery, but my pain is gone. I was able to dance at my grandson wedding!"</p>
+          <strong>D.S.</strong>
+        </article>
+        <article class="quote-card">
+          <p>"I am leaving here a different person than the one who came in."</p>
+          <strong>M.G., since 1990</strong>
+        </article>
+        <article class="quote-card">
+          <p>"Dr. Marcy turned me from a real skeptic into a believer."</p>
+          <strong>D.R.B.</strong>
+        </article>
+        <article class="quote-card">
+          <p>"I feel AMAZING! Dr. Marcy is a magician!"</p>
+          <strong>S.R.</strong>
+        </article>
+        <article class="quote-card">
+          <p>"After 30 years of back pain I have finally found relief, and without being cracked!"</p>
+          <strong>P.L.</strong>
+        </article>
+        <article class="quote-card">
+          <p>"She is precise, caring, professional."</p>
+          <strong>T.K.</strong>
+        </article>
+        <article class="quote-card">
+          <p>"I was terrified of chiropractors. Now I cannot imagine life without these visits."</p>
+          <strong>J.M.</strong>
+        </article>
+        <article class="quote-card">
+          <p>"My migraines are gone after 3 sessions."</p>
+          <strong>A.V.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"I thought I would need surgery, but my pain is gone. I was able to dance at my grandson wedding!"</p>
+          <strong>D.S.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"I am leaving here a different person than the one who came in."</p>
+          <strong>M.G., since 1990</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"Dr. Marcy turned me from a real skeptic into a believer."</p>
+          <strong>D.R.B.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"I feel AMAZING! Dr. Marcy is a magician!"</p>
+          <strong>S.R.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"After 30 years of back pain I have finally found relief, and without being cracked!"</p>
+          <strong>P.L.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"She is precise, caring, professional."</p>
+          <strong>T.K.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"I was terrified of chiropractors. Now I cannot imagine life without these visits."</p>
+          <strong>J.M.</strong>
+        </article>
+        <article class="quote-card" aria-hidden="true">
+          <p>"My migraines are gone after 3 sessions."</p>
+          <strong>A.V.</strong>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container contact-grid reveal">
+      <div class="contact-block">
+        <p class="section-kicker">Visit The Clinic</p>
+        <h3>Rosenthal Chiropractic Clinic</h3>
+        <p>Dr. Marcy L. Smurthwaite</p>
+        <p>12855 S. Belcher Road, Suite 1<br />Largo, FL 33773</p>
+        <a class="contact-phone" href="tel:+17275390075"><i data-lucide="phone-call"></i>(727) 539-0075</a>
+        <div class="hours">
+          <p><strong>Hours</strong></p>
+          <p>Mon to Thu: 9:00 AM to 5:30 PM</p>
+          <p>Friday: 9:00 AM to 12:00 PM</p>
+          <p>Sat and Sun: Closed</p>
+        </div>
+      </div>
       <div class="map-wrap">
         <iframe
-          title="Rosenthal Chiropractic Clinic Map"
+          title="Map to Rosenthal Chiropractic Clinic"
           loading="lazy"
-          allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=12855+S.+Belcher+Road,+Suite+1,+Largo,+FL+33773&output=embed">
+          src="https://maps.google.com/maps?q=12855%20S.%20Belcher%20Road%2C%20Suite%201%2C%20Largo%2C%20FL%2033773&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen>
         </iframe>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      Rosenthal Chiropractic Clinic &copy; 2026 | Largo, FL
-      <small>Chiropractor Largo | Chiropractor Clearwater | Chiropractor St. Petersburg | Chiropractor Seminole</small>
+    <div class="container footer-row">
+      <span>Rosenthal Chiropractic Clinic. All rights reserved.</span>
+      <span>(727) 539-0075</span>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
-    const nav = document.getElementById("siteNav");
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-    const navAnchors = navLinks.querySelectorAll("a");
+    const menuToggle = document.getElementById("menuToggle");
+    const primaryNav = document.getElementById("primaryNav");
 
-    function handleNavStyle() {
-      if (window.scrollY > 20) {
-        nav.classList.add("scrolled");
-      } else {
-        nav.classList.remove("scrolled");
-      }
+    if (menuToggle && primaryNav) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = primaryNav.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      primaryNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          primaryNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
     }
 
-    menuBtn.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", String(isOpen));
-      menuBtn.textContent = isOpen ? "✕" : "☰";
-    });
-
-    navAnchors.forEach((anchor) => {
-      anchor.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuBtn.textContent = "☰";
-      });
-    });
-
-    window.addEventListener("scroll", handleNavStyle);
-    handleNavStyle();
-
-    const revealItems = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            entry.target.classList.add("visible");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
 
-    revealItems.forEach((item) => observer.observe(item));
+    document.querySelectorAll(".reveal").forEach((section) => {
+      observer.observe(section);
+    });
+
+    lucide.createIcons();
   </script>
 </body>
 </html>
