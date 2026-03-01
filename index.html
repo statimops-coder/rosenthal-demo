@@ -248,6 +248,7 @@
     }
 
     .hero h1 { font-size: clamp(48px, 7vw, 88px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.0; color: var(--text); }
+    .hero h1 em { font-style: italic; color: var(--teal); font-weight: 400; }
 
     .hero-sub {
       margin: 24px 0 32px;
@@ -335,8 +336,13 @@
       right: -24px;
       bottom: -24px;
       width: min(42%, 220px);
-      border: 6px solid #fff;
-      box-shadow: var(--shadow-strong);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 40px rgba(31, 45, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      padding: 8px;
+      border-radius: 3px;
       z-index: 2;
     }
 
@@ -524,50 +530,78 @@
       overflow: hidden;
     }
 
-    .marquee-group {
-      margin-top: 30px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .marquee-track {
-      overflow: hidden;
-      width: 100%;
+    .carousel {
+      margin-top: 48px;
       position: relative;
     }
 
-    .marquee-inner {
+    .carousel-stage {
+      position: relative;
+      min-height: 200px;
       display: flex;
-      width: max-content;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
+      align-items: center;
     }
-
-    .marquee-left .marquee-inner { animation-name: scrollLeft; animation-duration: 40s; }
-    .marquee-right .marquee-inner { animation-name: scrollRight; animation-duration: 45s; }
 
     .testimonial-card {
-      background: #fff;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      padding: 24px 28px;
-      min-width: 320px;
-      max-width: 380px;
-      margin-right: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 0;
+      opacity: 0;
+      transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
     }
 
-    .testimonial-card p {
-      font-size: 15px;
+    .testimonial-card.active {
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .testimonial-card blockquote {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 3vw, 36px);
+      font-style: italic;
+      font-weight: 400;
       color: var(--text);
-      line-height: 1.6;
-      max-width: none;
+      line-height: 1.45;
+      max-width: 75ch;
+      margin: 0;
+      letter-spacing: -0.01em;
     }
 
-    .testimonial-card span {
+    .testimonial-card blockquote::before { content: "\201C"; color: var(--teal); font-size: 1.2em; }
+    .testimonial-card blockquote::after  { content: "\201D"; color: var(--teal); font-size: 1.2em; }
+
+    .testimonial-card cite {
       display: block;
-      font-size: 13px;
+      font-style: normal;
+      font-size: 14px;
       color: #6b7280;
-      margin-top: 12px;
+      margin-top: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .dot {
+      width: 24px;
+      height: 3px;
+      background: rgba(42, 122, 110, 0.2);
+      border-radius: 0;
+      cursor: pointer;
+      transition: background 0.4s ease, width 0.4s ease;
+    }
+
+    .dot.active {
+      background: var(--teal);
+      width: 48px;
     }
 
     .cta {
@@ -714,14 +748,9 @@
     .reveal:nth-child(2) { transition-delay: 100ms; }
     .reveal:nth-child(3) { transition-delay: 200ms; }
 
-    @keyframes scrollLeft {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    @keyframes scrollRight {
-      from { transform: translateX(-50%); }
-      to { transform: translateX(0); }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 1024px) {
@@ -729,7 +758,6 @@
       .about-wrap,
       .contact-grid,
       .footer-grid,
-      .mission-band,
       .services-grid,
       .cta-wrap {
         grid-template-columns: 1fr;
@@ -818,16 +846,16 @@
   <header class="hero" id="top">
     <div class="hero-left">
       <div class="hero-copy reveal">
-        <span class="hero-badge">Boutique Practice Since 1994</span>
-        <h1>Feel Good.<br>Do More.</h1>
-        <p class="hero-sub">Gentle, computerized chiropractic care in Largo, FL. No cracking. No twisting. Just results.</p>
+        <span class="hero-badge">Largo, FL &mdash; Boutique Practice Since 1994</span>
+        <h1>Pain Relief.<br><em>Without<br>the Crack.</em></h1>
+        <p class="hero-sub">Dr. Marcy uses only computerized instruments. No manual twisting, no popping, no packages. Just 30 years of precise, gentle results.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="tel:17275390075">Schedule a Visit</a>
-          <a class="btn btn-secondary" href="#services">Our Services</a>
+          <a class="btn btn-secondary" href="#services">How It Works</a>
         </div>
         <div class="hero-proof">
-          <i data-lucide="users"></i>
-          <span>Serving Pinellas County since 1994</span>
+          <i data-lucide="star"></i>
+          <span>First Cold Laser doctor in Tampa Bay</span>
         </div>
       </div>
     </div>
@@ -918,13 +946,9 @@
         <h2>Real results. Real patients.</h2>
       </div>
 
-      <div class="marquee-group reveal">
-        <div class="marquee-track marquee-left">
-          <div class="marquee-inner" id="row-left"></div>
-        </div>
-        <div class="marquee-track marquee-right">
-          <div class="marquee-inner" id="row-right"></div>
-        </div>
+      <div class="carousel reveal" id="testimonial-carousel">
+        <div class="carousel-stage" id="carousel-stage"></div>
+        <div class="carousel-dots" id="carousel-dots"></div>
       </div>
     </div>
   </section>
@@ -1022,23 +1046,39 @@
       }
     ];
 
-    function buildTestimonials(targetId) {
-      const target = document.getElementById(targetId);
-      const items = testimonials.concat(testimonials);
-      items.forEach((item) => {
-        const card = document.createElement("article");
-        card.className = "testimonial-card";
-        const quote = document.createElement("p");
-        quote.textContent = '"' + item.quote + '"';
-        const by = document.createElement("span");
-        by.textContent = '- ' + item.by;
-        card.append(quote, by);
-        target.appendChild(card);
-      });
+    // Fade carousel
+    const stage = document.getElementById('carousel-stage');
+    const dotsContainer = document.getElementById('carousel-dots');
+    let current = 0;
+    let timer;
+
+    testimonials.forEach((item, i) => {
+      const card = document.createElement('article');
+      card.className = 'testimonial-card' + (i === 0 ? ' active' : '');
+      card.innerHTML = '<blockquote>' + item.quote + '</blockquote><cite>' + item.by + '</cite>';
+      stage.appendChild(card);
+
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const cards = stage.querySelectorAll('.testimonial-card');
+    const dots  = dotsContainer.querySelectorAll('.dot');
+
+    function goTo(index) {
+      cards[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + testimonials.length) % testimonials.length;
+      cards[current].classList.add('active');
+      dots[current].classList.add('active');
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 6000);
     }
 
-    buildTestimonials("row-left");
-    buildTestimonials("row-right");
+    timer = setInterval(() => goTo(current + 1), 6000);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); } });
